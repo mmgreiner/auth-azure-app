@@ -24,7 +24,7 @@ The following steps show how to use **Entra ID** and **Omniauth** for authentica
 2. **Register your app**:
    - In the **Entra ID** section, navigate to **App registrations** > **New registration**.
    - Provide a name for the app.
-   - Set the **Redirect URI** to something like `http://localhost:3000/auth/entra_oauth2/callback` if you're developing locally.
+   - Set the **Redirect URI** to something like `http://localhost:3000/auth/entra_id/callback` if you're developing locally.
    - Add another **Redirect URI** for your production environment
    
 3. After registering, note the following information:
@@ -78,9 +78,9 @@ OmniAuth.config.silence_get_warning = true
 Ensure that the environment variables for Entra ID are set. Create or update a `.env` file:
 
 ```plaintext
-ENTRA_CLIENT_ID=your-client-id
-ENTRA_CLIENT_SECRET_VALUE=your-client-secret
-ENTRA_TENANT_ID=your-tenant-id
+AZURE_CLIENT_ID=your-client-id
+AZURE_CLIENT_SECRET_VALUE=your-client-secret
+AZURE_TENANT_ID=your-tenant-id
 ```
 
 ### Step 4: Set Up the Sessions Controller
@@ -191,7 +191,7 @@ Now, you should be ready to test your Entra ID authentication. Run the Rails ser
 rails server
 ```
 
-Go to `http://localhost:3000`, and you should see a "Sign in with Entra ID" link. Click the link, and after authentication via Entra ID, you should be redirected back to the home page and see your name (if authenticated).
+Go to <http://localhost:3000>, and you should see a "Sign in with Entra ID" link. Click the link, and after authentication via Entra ID, you should be redirected back to the home page and see your name (if authenticated).
 
 ### Additional Configuration (Optional)
 
