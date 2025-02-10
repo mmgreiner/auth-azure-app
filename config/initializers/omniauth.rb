@@ -12,6 +12,8 @@ end
 
 OmniAuth.config.logger = Rails.logger
 
+Rails.logger.info "ENV[AZURE_TENANT_ID] = #{ENV["AZURE_TENANT_ID"]}"
+
 # Ensure OmniAuth works in development without callback issues
 OmniAuth.config.allowed_request_methods = [ :post, :get ]
 OmniAuth.config.silence_get_warning = true

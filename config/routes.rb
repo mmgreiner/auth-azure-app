@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   root "home#index"
 
   # Entra authentication routes
+  get "/auth/failure", to: "sessions#failure"
   get "/auth/:provider", to: "sessions#new"
   get "/auth/:provider/callback", to: "sessions#create"
-  get "/auth/failure", to: redirect("/")
   delete "/logout", to: "sessions#destroy", as: "logout"
 end
