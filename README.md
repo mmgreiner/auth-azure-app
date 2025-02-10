@@ -118,6 +118,12 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to root_path, notice: "Signed out successfully"
   end
+
+  def failure
+    msg = "Failure to authenticate with Entra ID: #{params[:message}"
+    logger.error msg
+    redirect_to root_path, alert: msg 
+  end
 end
 ```
 
