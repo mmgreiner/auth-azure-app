@@ -136,6 +136,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   
   # Entra authentication routes
+  get "/auth/failure", to: "sessions#failure"      # this must be before session#new to match
   get '/auth/:provider', to: 'sessions#new'
   get '/auth/:provider/callback', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
