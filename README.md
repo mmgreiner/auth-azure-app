@@ -118,6 +118,12 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to root_path, notice: "Signed out successfully"
   end
+
+  def failure
+    msg = "Failure to authenticate with Entra ID: #{params[:message}"
+    logger.error msg
+    redirect_to root_path, alert: msg 
+  end
 end
 ```
 
@@ -130,6 +136,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   
   # Entra authentication routes
+  get "/auth/failure", to: "sessions#failure"      # this must be before session#new to match
   get '/auth/:provider', to: 'sessions#new'
   get '/auth/:provider/callback', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
