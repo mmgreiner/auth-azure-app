@@ -53,6 +53,10 @@ FROM base
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
 
+# added later Greiner
+COPY server.crt /etc/ssl/certs/server.crt
+COPY server.key /etc/ssl/private/server.key
+
 # Run and own only the runtime files as a non-root user for security
 RUN groupadd --system --gid 1000 rails && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
@@ -65,3 +69,9 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 # Start server via Thruster by default, this can be overwritten at runtime
 EXPOSE 80
 CMD ["./bin/thrust", "./bin/rails", "server"]
+
+# Start the Thruster server with SSL
+#CMD ["./bin/thrust", "./bin/rails", "server", "--ssl", "--ssl-key", "/etc/ssl/private/server.key", "--ssl-cert", "/etc/ssl/certs/server.crt"]
+
+# this one worked
+# CMD ["./bin/rails", "server", "-b", "0.0.0.0", "-e", "production"]

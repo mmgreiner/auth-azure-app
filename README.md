@@ -219,6 +219,33 @@ class ApplicationController < ActionController::Base
 end
 ```
 
+# Docker
+
+Next I tried to prepare a Dockefile for it. Rails 8 comes already with a Dockerfile.
+
+I needed the following steps:
+
+Create a `secret_key_base` using `rails secret`. Copy the generated key into your `.env` file as:
+
+  SECRET_KEY_BASE=xxxxx
+
+See also this [Medium post](https://medium.com/@michaeljcoyne/understanding-the-secret-key-base-in-ruby-on-rails-ce2f6f9968a1).
+
+To build docker, use:
+
+  docker build -t auth-azure-app .  
+
+To run docker to test it, you can pass in the `.env` file:
+
+  docker run -p 3000:3000 --env-file .env auth-azure-app 
+
+In the final deployment for production, you would set the environment variables in the deployment environment.
+
+https://github.com/basecamp/thruster
+
+https://camillovisini.com/coding/rails-migrate-from-postgres-to-sqlite
+
+
 
 # README
 
