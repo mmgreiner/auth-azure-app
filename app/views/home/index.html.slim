@@ -10,3 +10,5 @@ h1#home Home
   = button_to "sign out", logout_path, method: :delete 
 - else
   = link_to 'Sign in with Entra ID', "/auth/entra_id"
+
+p= link_to :dashboard, dashboards_path

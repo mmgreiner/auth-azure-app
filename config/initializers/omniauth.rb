@@ -1,9 +1,9 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :developer, fields: [ :name, :email ]
   provider :entra_id, {
-    client_id: ENV["AZURE_CLIENT_ID"],
-    client_secret: ENV["AZURE_CLIENT_SECRET_VALUE"],
-    tenant_id: ENV["AZURE_TENANT_ID"],
+    client_id: ENV.fetch("AZURE_CLIENT_ID"),
+    client_secret: ENV.fetch("AZURE_CLIENT_SECRET_VALUE"),
+    tenant_id: ENV.fetch("AZURE_TENANT_ID"),
     scope: "openid email profile User.Read",
     response_type: "code",
     grant_type: "authorization_code"

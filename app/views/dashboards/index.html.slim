@@ -1,0 +1,7 @@
+p style="color: green" = notice
+
+h1 
+  | Dashboard for
+  =< User.find(session[:user_id]).email
+
+p This should only be visible after login

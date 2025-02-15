@@ -200,6 +200,8 @@ rails server
 
 Go to <http://localhost:3000>, and you should see a "Sign in with Entra ID" link. Click the link, and after authentication via Entra ID, you should be redirected back to the home page and see your name (if authenticated).
 
+*Note*: <http://127.0.0.1:3000> will not work, since the Azure / Entra redirection URI does not include this. 
+
 ### Additional Configuration (Optional)
 
 1. **Handle Authentication Failures**: You can define an `omniauth_failure` method in your `SessionsController` to handle errors:
